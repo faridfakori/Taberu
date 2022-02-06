@@ -12,6 +12,7 @@ public class CharacterController : MonoBehaviour
     //organizing the code 
     private Vector2 move = new Vector2(1, 0);
     private Vector2 jump = new Vector2(0, 1);
+
     void Start()
     {
         //set the rigidbody to our character
@@ -24,7 +25,7 @@ public class CharacterController : MonoBehaviour
     }
 
     void Movements()
-   {
+    {
        //moving right and left : D right and A left
        if (Input.GetKey(KeyCode.D))
         {
