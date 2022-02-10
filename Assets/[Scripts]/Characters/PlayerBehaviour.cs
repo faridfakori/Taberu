@@ -15,6 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
     public LayerMask groundLayerMask;
     public bool isGrounded;
     public bool slope;
+    public AudioSource audio;
 
     //[Header("Animation Properties")] 
     private Animator animator;
@@ -61,6 +62,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (jump > 0 && roll == 0)
             {
+                audio.Play();
                 animator.SetInteger("AnimationState", 2); //Jump State
             } 
             else if (bounce == 0 && roll < 0)
