@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterController : MonoBehaviour
-{   
+{
     //CharacterSpeed you can do it manually in unity too ,dont change this 
     [SerializeField] private float characterSpeed;
     [SerializeField] private float characterJumpSpeed;
+    [SerializeField] private float characterDashSpeed;
     //player RigidBody
     private Rigidbody2D playerCharacterRgb;
     //organizing the code 
@@ -26,22 +27,33 @@ public class CharacterController : MonoBehaviour
 
     void Movements()
     {
-       //moving right and left : D right and A left
-       if (Input.GetKey(KeyCode.D))
+        //moving right and left : D right and A left
+        if (Input.GetKey(KeyCode.D))
         {
             playerCharacterRgb.velocity = move * characterSpeed;
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            playerCharacterRgb.velocity = (-move)  * characterSpeed;
+            playerCharacterRgb.velocity = (-move) * characterSpeed;
         }
         if (Input.GetButtonDown("Jump"))
-       {
-           
-           playerCharacterRgb.AddForce(jump*characterJumpSpeed);
-          
-       }
-       
-   }
-    
+        {
+
+            playerCharacterRgb.AddForce(jump * characterJumpSpeed);
+
+        }
+        //special move
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            Debug.Log("S pressed");
+            playerCharacterRgb.AddForce(move * characterDashSpeed);
+        }else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("S pressed");
+            playerCharacterRgb.AddForce((-move) * characterDashSpeed);
+        }
+
+
+    }
+
 }

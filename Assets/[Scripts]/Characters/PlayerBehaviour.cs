@@ -6,7 +6,8 @@ public class PlayerBehaviour : MonoBehaviour
 {
     [Header("Player Movement")]
     public float horizontalForce;
-    public float verticalForce;    
+    public float verticalForce;
+    public float dashForce;
 
     [Header("Ground Detection")]
     public Transform groundCheck1;
@@ -31,7 +32,8 @@ public class PlayerBehaviour : MonoBehaviour
    
     void FixedUpdate()
     {        
-        Move();        
+        Move();
+        SpecialMove();
     }
 
     private void Move()
@@ -76,6 +78,21 @@ public class PlayerBehaviour : MonoBehaviour
                 rigidBody2D.AddForce(move);
             }
             
+        }
+    }
+
+    private void SpecialMove()
+    {
+        Vector2 move = new Vector2(1, 0);
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            Debug.Log("S pressed");
+            rigidBody2D.AddForce(move * dashForce);
+        }
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("S pressed");
+            rigidBody2D.AddForce((-move) * dashForce);
         }
     }
 
