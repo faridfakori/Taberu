@@ -12,7 +12,7 @@ public class MovingEnemy : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();
         rend = GetComponent<SpriteRenderer>();
-        Invoke("Think", 3);
+        Invoke("Think", 5);
     }
 
     // Update is called once per frame
@@ -43,6 +43,6 @@ public class MovingEnemy : MonoBehaviour
     void Think()
     {
         nextmove = Random.Range(-1,2);
-        Invoke("Think", 3);
+        Invoke("Think", 5);
     }
 }
