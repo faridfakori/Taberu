@@ -20,11 +20,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     //[Header("Animation Properties")] 
     private Animator animator;
-
+    private SpriteRenderer spriteRender;
     private Rigidbody2D rigidBody2D;    
     
     void Start()
     {
+        spriteRender = GetComponent<SpriteRenderer>();
         rigidBody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -88,11 +89,13 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.Log("S pressed");
             rigidBody2D.AddForce(move * dashForce);
+            animator.SetInteger("AnimationState", 3); //DashState
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             Debug.Log("S pressed");
-            rigidBody2D.AddForce((-move) * dashForce);
+            rigidBody2D.AddForce((-move) * dashForce); 
+            animator.SetInteger("AnimationState", 3); //Bouncing State
         }
     }
 
